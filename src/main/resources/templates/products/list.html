@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Product List</title>
 </head>
 <body>
 
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+
     <h1>Product List</h1>
-    <a th:href="@{/web/products/new}">Add New Product</a>
+    <!-- Only ADMIN sees this link -->
+    <a th:href="@{/web/products/new}" sec:authorize="hasRole('ADMIN')">
+        Add New Product
+    </a>
 
     <table border="1">
         <thead>
@@ -24,10 +32,13 @@
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.quality}"></td>
                 <td th:text="${product.price}"></td>
+                <!-- Also hide Edit and Delete for USER -->
                 <td>
-                    <a th:href="@{/web/products/edit/{id}(id=${product.id})}">Edit</a>
-                    &nbsp;
-                    <a th:href="@{/web/products/delete/{id}(id=${product.id})}">Delete</a>
+                    <span sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{/web/products/edit/{id}(id=${product.id})}">Edit</a>
+                        &nbsp;
+                        <a th:href="@{/web/products/delete/{id}(id=${product.id})}">Delete</a>
+                    </span>
                 </td>
             </tr>
         </tbody>
