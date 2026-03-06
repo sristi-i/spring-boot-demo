@@ -6,7 +6,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/students")
-public class StudentContoller {
+public class StudentController {
 
     // in-memory list acting as our fake database
     private List<Student> students = new ArrayList<>(List.of(
