@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import jakarta.validation.Valid;
 
 @RestController 
 @RequestMapping("/api/auth")
@@ -25,7 +26,7 @@ public class AuthController {
     @Autowired private JwtService jwtService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
         // @RequestBody = Jackson maps incoming JSON → LoginRequest object
 
         try {
