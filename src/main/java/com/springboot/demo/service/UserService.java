@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.modelmapper.ModelMapper;
+import com.springboot.demo.dto.UserDTO;
 
 @Service
 // implements UserDetailsService - spring security interface
@@ -43,5 +45,24 @@ public class UserService implements UserDetailsService{
         // always encode password before saving - never store plain text
         user.setPassword((passwordEncoder.encode(user.getPassword())));
         return userRepository.save(user); // Hibernate saves to users + user_roles tables
+    }
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    // Entity -> DTO (for response, hide password)
+    public UserDTO getUserById(Long id){
+        User user = userRepository.findById(id).orElseThrow(
+            () -> new RuntimeException("User not found"));
+        // modelMapper.map(source, destinationType.class)
+        // Auto-maps fields with SAME name. Different names need nmanual config
+        return modelMapper.map(user, UserDTO.class);
+    }
+
+    // DTO -> Entity (for saving incoming request)
+    public UserDTO savUser(UserDTO userDto){
+        User user = modelMapper.map(userDto, User.class);
+        User saved = userRepository.save(user);
+        return modelMapper.map(saved, UserDTO.class); // return DTO, not entity
     }
 }

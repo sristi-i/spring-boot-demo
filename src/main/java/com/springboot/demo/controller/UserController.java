@@ -1,5 +1,6 @@
 package com.springboot.demo.controller;
 
+import com.springboot.demo.dto.UserDTO;
 import com.springboot.demo.entity.User;
 import com.springboot.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired private UserService userService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+        return ResponseEntity.ok(userService.getUserById(id));
+    }
 
     // PUBLIC — no JWT needed
     // SecurityConfig: .requestMatchers("/api/users/register").permitAll()
