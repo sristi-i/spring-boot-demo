@@ -7,6 +7,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.springboot.demo.exception.ResourceNotFoundException;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,8 +54,16 @@ public class UserService implements UserDetailsService{
 
     // Entity -> DTO (for response, hide password)
     public UserDTO getUserById(Long id){
-        User user = userRepository.findById(id).orElseThrow(
-            () -> new RuntimeException("User not found"));
+        // Before: orElseThrow(() -> new RuntimeException("User not found"))
+        // returns 500 internal servr error
+        // User user = userRepository.findById(id).orElseThrow(
+        //     () -> new RuntimeException("User not found"));
+
+        // after: throw ResourceNotFoundException
+        // GlobalExceptionHandler catches it -> returns clean 404 JSON
+        User user = userRepository.findById(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+
         // modelMapper.map(source, destinationType.class)
         // Auto-maps fields with SAME name. Different names need nmanual config
         return modelMapper.map(user, UserDTO.class);
