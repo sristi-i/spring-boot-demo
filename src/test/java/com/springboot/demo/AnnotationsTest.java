@@ -60,7 +60,7 @@ public class AnnotationsTest {
     @Test
     void testSubtraction() {
         Calculator calc = new Calculator();
-        assertEquals(6, calc.subtract(10, 4));             // 10-4 = 6 ✅
+        assertEquals(6, calc.subtract(10, 4));
         System.out.println("@Test ---- testSubtraction executed");
     }
 

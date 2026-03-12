@@ -1,4 +1,4 @@
-package com.springboot.demo;
+package com.springboot.demo.product;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -20,6 +20,15 @@ public class ProductEntity {
     @DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than 0")
     private Double price;
 
+    public ProductEntity(long l, String string, double d) {
+        this.id = l;
+        this.name = string;
+        this.price = d;
+
+    }
+    public ProductEntity() {
+        //TODO Auto-generated constructor stub
+    }
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

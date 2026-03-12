@@ -1,4 +1,4 @@
-package com.springboot.demo;
+package com.springboot.demo.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +14,8 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public void saveProduct(ProductEntity product) {
-        productRepository.save(product);
+    public ProductEntity saveProduct(ProductEntity product) {
+        return productRepository.save(product);
     }
 
     public ProductEntity getProductById(Long id) {
