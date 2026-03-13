@@ -1,4 +1,4 @@
-package com.springboot.demo;
+package com.springboot.demo.student;
 
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;

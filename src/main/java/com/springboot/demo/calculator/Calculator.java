@@ -1,4 +1,4 @@
-package com.springboot.demo;
+package com.springboot.demo.calculator;
 
 // simple class to practice JUnit
 // Real projects

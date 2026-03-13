@@ -1,4 +1,4 @@
-package com.springboot.demo;
+package com.springboot.demo.student;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

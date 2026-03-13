@@ -1,4 +1,4 @@
-package com.springboot.demo;
+package com.springboot.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

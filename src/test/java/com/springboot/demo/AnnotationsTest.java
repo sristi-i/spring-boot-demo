@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.springboot.demo.Calculator;
+import com.springboot.demo.calculator.Calculator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

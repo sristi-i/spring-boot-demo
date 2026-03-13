@@ -1,4 +1,4 @@
-package com.springboot.demo;
+package com.springboot.demo.student;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
