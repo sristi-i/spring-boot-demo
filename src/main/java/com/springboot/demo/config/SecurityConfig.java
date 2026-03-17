@@ -3,7 +3,6 @@ package com.springboot.demo.config;
 import com.springboot.demo.filter.JwtAuthenticationFilter;
 import com.springboot.demo.service.UserService;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +33,8 @@ public class SecurityConfig {
                     .authorizeHttpRequests(auth -> auth
                                             .requestMatchers("/api/auth/**").permitAll() // login public
                                             .requestMatchers("/api/users/register").permitAll() // register public
+                                            .requestMatchers("/api/mapping/**").permitAll()     
+                                            .requestMatchers("/api/inheritance/**").permitAll()
                                             .anyRequest().authenticated() // everything else needs JWT
                     )
                     .sessionManagement(s->s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
